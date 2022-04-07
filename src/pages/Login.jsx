@@ -1,5 +1,13 @@
+import { Typography } from "antd";
+import LoginForm from "../components/LoginForm";
+
 const Login = () => {
-  return <h1>Страница ввода логина и пароля</h1>;
+  return (
+    <>
+      <Typography.Title>Вход на сайт</Typography.Title>
+      <LoginForm />
+    </>
+  );
 };
 
 export default Login;

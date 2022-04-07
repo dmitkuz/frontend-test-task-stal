@@ -6,3 +6,7 @@
   background: #fff;
   margin: 66px;
 }
+
+.site-form-item-icon {
+  color: rgba(0, 0, 0, 0.25);
+}
