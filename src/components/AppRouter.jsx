@@ -5,6 +5,23 @@ import { privateRoutes, publicRoutes, ROUTE_NAMES } from "../router";
 const AppRouter = () => {
   const { isAuth } = useSelector((state) => state.auth);
 
+  if (isAuth === null) return null;
+
+  if (isAuth) {
+    return (
+      <Routes>
+        {privateRoutes.map((route) => (
+          <Route
+            path={route.path}
+            element={<route.component />}
+            key={route.path}
+          />
+        ))}
+        <Route path="*" element={<Navigate to={ROUTE_NAMES.HOME} />} />
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
       {publicRoutes.map((route) => (
@@ -14,21 +31,7 @@ const AppRouter = () => {
           key={route.path}
         />
       ))}
-
-      {isAuth &&
-        privateRoutes.map((route) => (
-          <Route
-            path={route.path}
-            element={<route.component />}
-            key={route.path}
-          />
-        ))}
-
-      {isAuth ? (
-        <Route path="*" element={<Navigate to={ROUTE_NAMES.HOME} />} />
-      ) : (
-        <Route path="*" element={<Navigate to={ROUTE_NAMES.LOGIN} />} />
-      )}
+      <Route path="*" element={<Navigate to={ROUTE_NAMES.LOGIN} />} />
     </Routes>
   );
 };

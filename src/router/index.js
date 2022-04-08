@@ -12,10 +12,12 @@ export const ROUTE_NAMES = {
 
 export const publicRoutes = [
   { path: ROUTE_NAMES.HOME, exact: true, component: Home },
-  { path: ROUTE_NAMES.LOGIN, exact: true, component: Login },
   { path: ROUTE_NAMES.NEWS, exact: true, component: News },
+  { path: ROUTE_NAMES.LOGIN, exact: true, component: Login },
 ];
 
 export const privateRoutes = [
+  { path: ROUTE_NAMES.HOME, exact: true, component: Home },
+  { path: ROUTE_NAMES.NEWS, exact: true, component: News },
   { path: ROUTE_NAMES.PROFILE, exact: true, component: Profile },
 ];

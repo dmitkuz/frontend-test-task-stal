@@ -11,6 +11,8 @@ const App = () => {
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       dispatch(setIsAuth(true));
+    } else {
+      dispatch(setIsAuth(false));
     }
   }, []);
 

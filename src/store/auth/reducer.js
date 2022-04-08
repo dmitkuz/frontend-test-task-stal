@@ -1,7 +1,7 @@
 import { SET_IS_AUTH, SET_USER, SET_ERROR, SET_IS_LOADING } from "./constants";
 
 const initialState = {
-  isAuth: false,
+  isAuth: null,
   user: {},
   isLoading: false,
   error: "",
