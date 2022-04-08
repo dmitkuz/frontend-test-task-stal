@@ -1,5 +1,16 @@
+import { Typography } from "antd";
+
 const Home = () => {
-  return <h1>Главная</h1>;
+  return (
+    <>
+      <Typography.Title>Главная</Typography.Title>
+      <Typography.Paragraph>
+        Логин: Admin
+        <br />
+        Пароль: 12345
+      </Typography.Paragraph>
+    </>
+  );
 };
 
 export default Home;

@@ -1,15 +1,12 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { setIsLoadingNews, setNews } from "./actions";
 import { GET_NEWS } from "./constants";
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+import { fetchNews } from "./api";
 
 function* fetchNewsWorker() {
   try {
     yield put(setIsLoadingNews(true));
-    yield delay(1000);
-    const data = yield call(() => fetch("/news.json"));
-    const { articles } = yield call(() => data.json());
+    const articles = yield call(fetchNews);
     yield put(setNews(articles));
   } catch (e) {
     console.log(e);

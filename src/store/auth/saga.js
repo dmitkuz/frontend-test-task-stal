@@ -1,20 +1,15 @@
 import { takeLatest, put, call } from "redux-saga/effects";
 import { LOGIN, LOGOUT } from "./constants";
 import { setIsLoading, setError, setIsAuth } from "./actions";
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const getMockUsers = () => fetch("/users.json");
+import { getMockUsers } from "./api";
 
 function* LoginWorker(action) {
   try {
-    console.log("THIS SAGA");
     yield put(setIsLoading(true));
-    yield delay(1000);
-    const response = yield call(getMockUsers);
-    const mockUserList = yield call(() => response.json());
+    const mockUserList = yield call(getMockUsers);
     const { username, password } = action.payload;
     const mockUser = mockUserList.find(
-      (user) => user.username === username && user.password === password
+      (u) => u.username === username && u.password === password
     );
     if (mockUser) {
       localStorage.setItem("auth", true);
