@@ -1,21 +1,16 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Skeleton, List, Typography } from "antd";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { getNews } from "../store/news/actions";
 
 const News = () => {
-  const [news, setNews] = useState(Array(4).fill({}));
-  const [isLoading, setIsLoading] = useState(true);
+  const { news, isLoading } = useSelector((state) => state.news);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      fetch("/news.json")
-        .then((response) => response.json())
-        .then(({ articles }) => {
-          setIsLoading(false);
-          setNews(articles);
-        });
-    }, 3000);
+    if (isLoading) {
+      dispatch(getNews());
+    }
   }, []);
 
   return (
