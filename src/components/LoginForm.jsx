@@ -1,11 +1,16 @@
 import { Form, Input, Button, Alert } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../store/auth/actions";
+import { login, setError } from "../store/auth/actions";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { error, isLoading } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (error) dispatch(setError(""));
+  }, []);
 
   const onFinish = (values) => {
     dispatch(login(values));

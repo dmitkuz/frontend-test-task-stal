@@ -20,8 +20,9 @@ function* LoginWorker(action) {
       localStorage.setItem("auth", true);
       localStorage.setItem("username", mockUser.username);
       yield put(setIsAuth(true));
+      yield put(setError(""));
     } else {
-      yield put(setError("Некорректный логин или пароль"));
+      yield put(setError("Имя пользователя или пароль введены не верно"));
     }
   } catch (error) {
     console.error(error);
